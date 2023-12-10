@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Tanya
+ * @author Kushagra
  *
  */
 module ProblemSolvingPractice {
