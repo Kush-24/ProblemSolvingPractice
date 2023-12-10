@@ -13,6 +13,7 @@ class GCDOfStrings {
     /*
     Problem:
     Find the greatest common divisor (GCD) of two strings.
+    
 
     Logic Explanation:
     - If the concatenation of str1 and str2 is not equal to the concatenation of str2 and str1,

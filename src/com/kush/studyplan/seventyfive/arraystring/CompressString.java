@@ -28,6 +28,7 @@ class CompressString {
     public static int compress(char[] chars) {
         StringBuilder sb = new StringBuilder();
         sb.append(chars[0]); // Append the first character
+        
 
         int i = 1; // Start iterating from the second character
         int cnt = 1; // Counter for consecutive occurrences
