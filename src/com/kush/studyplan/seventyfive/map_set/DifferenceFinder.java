@@ -1,4 +1,4 @@
-package com.kush.studyplan.seventyfive.map_set;
+	package com.kush.studyplan.seventyfive.map_set;
 import java.util.*;
 
 public class DifferenceFinder {
@@ -6,7 +6,6 @@ public class DifferenceFinder {
     /**
      * Finds the difference between two arrays.
     */
-	
 	/**
      * Problem:
      * Given two integer arrays 'nums1' and 'nums2', find the unique elements from 'nums1'

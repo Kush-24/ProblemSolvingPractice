@@ -43,7 +43,8 @@ public class MaxNumberofKSumPair {
         for (int num : nums) {
             int freqNum = map.getOrDefault(num, 0);
             int freqComp = map.getOrDefault(k - num, 0);
-
+         // If both num is same than frequency counts should atleast 2 i.e > 1
+         // sum= 6 , num =3 then sum - num is also 3. (3 + 3) two three is required for  making sum 6.
             if ((num == k - num && freqNum > 1) || (num != k - num && freqNum > 0 && freqComp > 0)) {
                 map.put(num, freqNum - 1);
                 map.put(k - num, freqComp - 1);
