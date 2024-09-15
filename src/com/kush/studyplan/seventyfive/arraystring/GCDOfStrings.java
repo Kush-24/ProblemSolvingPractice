@@ -41,6 +41,15 @@ class GCDOfStrings {
     }
 
     // Method to find the greatest common divisor (GCD) of two numbers using Euclidean algorithm
+    /*
+     * This Algo is efficient method for finding the (GCD) of two numbers.
+     * It works by repeatedly applying the formula:
+     * 
+     * gcd(a,b)= gcd(b,a % b)
+     * 
+     * 1> if b=0, then GCD is a
+     * 2> otherwise, the GCD is the GCD of (b and a mod b)
+     */
     private static int gcd(int a, int b) {
         while (b != 0) {
             int temp = b;
@@ -48,5 +57,14 @@ class GCDOfStrings {
             a = temp;
         }
         return a; // Return the GCD
+    }
+    
+    public static int findGCD(int a, int b) {
+        if (b == 0) {
+            return a;
+        } else {
+            // Recursively find the GCD, GCD(a, b) = GCD(b, a % b)
+            return findGCD(b, a % b);
+        }
     }
 }

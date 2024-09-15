@@ -49,7 +49,7 @@ class CompressString {
             i++;
         }
 
-        // Check for remaining characters and their counts
+        // what if control never goes in else part i.e "aaaaaaaa"
         if (cnt > 1) {
             sb.append(cnt);
         }

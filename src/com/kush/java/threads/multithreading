@@ -1,0 +1,121 @@
+1. **Thread Pools:**
+   - Explain the concept of a thread pool and how it improves performance in a multithreaded application.
+   - Compare and contrast the `ExecutorService` and `ForkJoinPool` in Java.
+
+2. **Concurrency Utilities:**
+   - Discuss the advantages of using `java.util.concurrent` package over traditional thread management in Java.
+   - How does the `CountDownLatch` class work, and in what scenarios would you use it?
+
+3. **Synchronization:**
+   - Explain the differences between `synchronized` methods and blocks in Java.
+   - Discuss the pros and cons of using `synchronized` keyword versus the `java.util.concurrent.locks` package.
+
+4. **Atomic Operations:**
+   - What is the significance of the `volatile` keyword, and how does it differ from using `synchronized`?
+   - Explain the use of the `AtomicInteger` class and how it helps in achieving atomic operations.
+
+5. **Deadlock and Starvation:**
+   - What is a deadlock in multithreading, and how can it be prevented or resolved?
+   - Differentiate between deadlock and starvation in a multithreaded environment.
+
+6. **Thread Safety and Immutability:**
+   - Explain the importance of thread safety and how you can achieve it in Java.
+   - Discuss the concept of immutable objects and their role in concurrent programming.
+
+7. **Java Memory Model:**
+   - Describe the Java Memory Model and how it ensures visibility and ordering in a multithreaded environment.
+   - What are the differences between the `volatile` keyword and using `synchronized` blocks in terms of memory visibility?
+
+8. **Fork-Join Framework:**
+   - Explain the Fork-Join framework in Java and provide an example of its usage.
+   - How does work-stealing improve the performance of the Fork-Join framework?
+
+9. **Parallel Streams:**
+   - Discuss the use of parallel streams in Java and when it is beneficial to use them.
+   - How does the parallel stream execution differ from traditional sequential stream execution?
+
+10. **Thread Local Variables:**
+    - What are thread-local variables, and how can they be used to improve performance in a multithreaded application?
+    - Provide an example scenario where thread-local variables are particularly useful.
+
+Answers:
+
+1. **Thread Pools:**
+   - Thread pool is a pool of worker threads that are ready to perform tasks. It improves performance by reusing existing threads rather than creating new ones. `ExecutorService` provides a higher-level replacement for managing threads, and `ForkJoinPool` is designed for recursive task execution.
+
+2. **Concurrency Utilities:**
+   - The `java.util.concurrent` package provides higher-level concurrency utilities like `ExecutorService`, `ConcurrentHashMap`, and `CountDownLatch`. These utilities simplify the development of concurrent applications by offering abstractions for thread management and synchronization.
+
+3. **Synchronization:**
+   - `synchronized` methods and blocks are used to achieve mutual exclusion, but they differ in scope. Methods synchronize the entire method, while blocks allow synchronization of specific code sections. The `java.util.concurrent.locks` package provides more flexibility with explicit lock objects.
+   
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+class SynchronizationExample {
+    // Example 1: Synchronized Method
+    public synchronized void synchronizedMethod() {
+        System.out.println("Start synchronizedMethod");
+        // Critical section
+        System.out.println("End synchronizedMethod");
+    }
+
+    // Example 2: Synchronized Block
+    public void synchronizedBlock() {
+        System.out.println("Start synchronizedBlock");
+        // Non-critical section
+        // Synchronized block
+        synchronized (this) {
+            // Critical section
+            System.out.println("Inside synchronizedBlock");
+        }
+        // Non-critical section
+        System.out.println("End synchronizedBlock");
+    }
+
+    // Example 3: ReentrantLock
+    private final Lock lock = new ReentrantLock();
+    public void reentrantLockExample() {
+        System.out.println("Start reentrantLockExample");
+        // Non-critical section
+        lock.lock(); // Acquire the lock
+        try {
+            // Critical section
+            System.out.println("Inside reentrantLockExample");
+        } finally {
+            lock.unlock(); // Release the lock in a finally block
+        }
+        System.out.println("End reentrantLockExample");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        SynchronizationExample example = new SynchronizationExample();
+        new Thread(() -> example.synchronizedMethod()).start();
+        new Thread(() -> example.synchronizedBlock()).start();
+        new Thread(() -> example.reentrantLockExample()).start();
+    }
+}
+
+
+4. **Atomic Operations:**
+   - The `volatile` keyword ensures visibility of changes across threads, but it does not provide atomicity. `AtomicInteger` is a class in `java.util.concurrent.atomic` package, offering atomic operations for integers, preventing race conditions.
+   
+
+5. **Deadlock and Starvation:**
+   - Deadlock occurs when two or more threads are blocked indefinitely, each waiting for the other. Starvation is when a thread is unable to gain regular access to shared resources. Both situations require careful design and synchronization to be avoided.
+
+6. **Thread Safety and Immutability:**
+   - Thread safety ensures that a piece of code can be safely executed by multiple threads concurrently. Immutability, achieved through `final` and immutable classes, eliminates the need for synchronization as objects cannot be modified.
+
+7. **Java Memory Model:**
+   - The Java Memory Model specifies how threads interact through memory. `volatile` ensures changes are visible across threads, and `synchronized` provides both visibility and ordering guarantees. Memory barriers ensure proper synchronization.
+
+8. **Fork-Join Framework:**
+   - The Fork-Join framework is part of `java.util.concurrent` for parallelizing recursive algorithms. It involves dividing tasks into smaller subtasks and combining results. Work-stealing improves efficiency by allowing idle threads to steal tasksfrom busy ones.
+
+9. **Parallel Streams:**
+   - Parallel streams in Java allow concurrent processing of data. They use the Fork-Join framework behind the scenes, automatically partitioning data and utilizing multiple cores. Parallel streams are suitable for CPU-bound tasks.
+
+10. **Thread Local Variables:**
+    - Thread-local variables are variables that have a separate copy for each thread. They are useful for storing thread-specific information without the need for synchronization. This can improve performance by avoiding contention for shared resources.
