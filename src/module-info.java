@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author Tanya
- *
- */
-module ProblemSolvingPractice {
-}
