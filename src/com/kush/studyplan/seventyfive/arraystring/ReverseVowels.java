@@ -10,6 +10,16 @@ class ReverseVowels {
         // Calling reverseVowels method and printing the result
         String result = reverseVowels(input);
         System.out.println("Reversed Vowels: " + result);
+            // Create an immutable Set<Character> with elements 'a' and 'e'
+            Set<Character> charSet = Set.of('a', 'e');
+            try {
+            // we can't update immutable set
+            charSet.add('k');
+            } catch (Exception e) {
+            	System.out.println("Exception "+e);
+			}
+            // Display the elements of the Set
+            System.out.println("Set elements: " + charSet);
     }
 
     /*
